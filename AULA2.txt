@@ -1,0 +1,85 @@
+Modulo 2
+Manipulando eventos INLINE por elementos da DOM
+------------
+DOM é a arvore de elementos dentro do nosso HTML
+
+
+por exemplo uma DIV, um button todos elementos visualmente dispostos em tela compoem a DOM
+
+Funcoes podem ser usadas sobre qualquer elemento da DOM
+
+Exemplos:
+            <input onkeydown="mostraAlerta()">
+            <button onclick="mostraAlerta()">Me pressione</button>
+            <button onmouseover="mostraAlerta()">Passe por cima</button>
+
+
+Trabalhando com a DOM
+
+Como referenciar elementos da DOM (do html) atras do JS e nao apenas disparar do HTML pro javascript.
+como buscar uma informacao da DOM atraves do nosso script.
+
+----------------AULA 2--------------
+    <body>
+        <div id="app">
+            <input type="text" name="nome" id="nome" class="nome" />
+            <input type="text" name="nome" id="nome2" />
+            
+            <button class="botao">Adicionar</button>
+
+        </div>
+
+        <script>
+            //formas de recuperar um elemento 
+            var inputElement = document.getElementById('nome');
+            console.log(inputElement); //exibe <input type="text" name="nome" id="nome" />
+
+            //forma que busca pela tag do elemento 
+            var inputElement = document.getElementsByTagName('input'); //retorna um VETOR HTML collection com os inputs nome e nome2
+            //se sabemos que só teremos um elemento com esta TAG podemos utilizar assim:
+            var inputElement = document.getElementsByTagName('input')[0]; //retorna apenas o primeiro elemento com a tag INPUT
+           
+           //via ClassName é igual ao via TAGNAME pois retorna um vetor e se quiser pegar só um valor é necessario passar
+           //a posicao do vetor desejada.
+            var inputElement = document.getElementsByClassName('nome');  //retorna vetor html collection
+            var inputElement = document.getElementsByClassName('nome')[0];  //retorna apenas o primeiro Elemento com a class nome
+            
+            //sintaxe mais util de todas chamada QUERYSELECTOR (SUBSTITUI AS OUTRAS)
+            //Nao precisa dos atributos ID ou CLASS no elemento INPUT por exemplo ficando 
+            //apenas <input type="text" name="nome" />
+            /*
+                Este tipo de buscar nos permite andar pela DOM como no exemplo abaixo:
+                estamos entrando na TAG BODY depois na TAG DIV com a ID App (referenciada pelo # ficando TAG#ID_NAME)
+                e por ultimo qual elemento estamos buscando que no caso o INPUT ficando:
+                document.querySelector('body div#app input');
+
+                no caso podemos remover a TAG body porque ela sempre existirá
+            */
+            var inputElementQS= document.querySelector('body div#app input');
+            console.log(inputElementQS);
+            //QUERY SELECTOR SEMPRE RETORNARA APENAS UM UNICO ELEMENTO 
+            // A NAO SER QUE EXECUTEMOS O COMANDO document.querySelectorAll('tag a ser pesquisada');
+            //ai ele retornara todos os elementos com a tal TAG
+            /*
+            Dentro do querySelector podemos buscar tambem um elemento com algum atributo por exemplo
+            document.querySelector('div#app input[name=nome]')
+
+            Para referenciar a classe usa se . por exemplo
+            document.querySelector('div#app input.classeNome'); ou
+            document.querySelector('button.botao');
+
+            Quando usamos colchetes dentro do querySelector estamos referenciando A PROPRIEDADE DO ELEMENTO
+            no exemplo acima a propriedade name
+            */
+            var inputElement= document.querySelector('input[name=nome]');
+
+            /* Quase igual a chamar o onclick no atributo do <button> só que é fazendo via SCRIPT */ 
+            var btnElement = document.querySelector('button.botao');  //recupera o button com a classe botao
+            btnElement.onclick=function(){        //o botao.onclick recebe uma funcao 
+                var text = inputElement.value;      //recupera o valor do inputElement que equivale ao campo text nome
+                alert(text);                //exibe o valor em um alerta ao ser clicado no botao adicionar e o campo estiver preenchdio
+            }
+            
+        </script>
+    </body>
+------------------AULA 3---------------------

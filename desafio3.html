@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Curso Javascript</title>
+    </head>
+    <body>
+        <script>
+            var body = document.querySelector('body');
+            var container1 = document.createElement('div');
+            container1.setAttribute('id','lista');
+            body.appendChild(container1);
+            var container2 = document.createElement('div');
+            container2.setAttribute('id','form');
+            body.appendChild(container2);
+
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+
+            for (nome in nomes){
+                var nomeLista=document.createTextNode(nomes[nome]);
+                var elementUl=document.createElement('ul');
+                elementUl.appendChild(nomeLista);
+                container1.appendChild(elementUl);
+            }
+
+            function adicionar(){
+                var nome=document.querySelector('input');
+                var ulNome=document.createElement('ul');
+                ulNome.appendChild(document.createTextNode(nome.value));
+                container1.appendChild(ulNome);
+                nome.value='';
+            }
+
+            var campoNome=document.createElement('input');
+            campoNome.setAttribute('name','nome');
+            container2.appendChild(campoNome);
+
+            var btnAdd=document.createElement('button');
+            btnAdd.setAttribute('onClick','adicionar()');
+            btnAdd.appendChild(document.createTextNode('Adicionar'));
+            container2.appendChild(btnAdd);
+
+        </script>
+    </body>
+</html>
+
