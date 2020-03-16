@@ -45,6 +45,7 @@ function addTodo(){
     todos.push(todoText);
     inputElement.value= '';
     renderTodos();
+    saveToStorage();
 }
 
 buttonElement.onclick = addTodo;  //acao do botao de adicionar
@@ -53,5 +54,12 @@ function deleteTodo(pos){
     todos.splice(pos, 1); //Metodo splice remove uma quantidade de itens de uma array baseado na posicao passada;
                     //onde array.splice(posicao, quantidade de itens)     array.splice(3, 1); removera o 4 item da array
     renderTodos();
+    saveToStorage();
 
+}
+
+function saveToStorage(){
+    localStorage.setItem('list_todos',JSON.stringify(todos));
+    //podemos consultar os valores cadastrados na aba inspecionar do navegador na aba Application>LocalStorage
+    
 }
