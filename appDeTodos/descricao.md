@@ -10,4 +10,7 @@ variavel localToStorage  é uma variavel global que nos permite salvar.
 JSON.stringfy(array_escolhida);  JSON é uma variavel global, com o metodo stringfy ele converte um vetor em uma string
 para poder salvar no formato JSON.
 //podemos consultar os valores cadastrados na aba inspecionar do navegador na aba Application>LocalStorage
-    
+
+JSON.parse(localStorage.getItem('list_todos)); 
+//Transforma os valores de formato JSON para o formato da Array.
+

@@ -5,11 +5,17 @@ var inputElement = document.querySelector('#app input'); //Buscnado dentro da DI
 var buttonElement = document.querySelector('#app button'); //Buscando dentro da div o elemento button
 
 //Array que armazena os TODOS que serao usados nos li
-var todos= [
+/*var todos= [
     'Fazer café',
     'Estudar Javascript',
     'Acessar comunidade da Rocketseat'
-];
+];*/
+
+//Coletando os dados do localStorage
+
+//declara a ARRAY todos que recebe o parse do JSON list_todos   OU || caso o localStorage list_todos
+// nao estiver cadastrado ainda ele retorna um valor de Array em branco []
+var todos = JSON.parse(localStorage.getItem('list_todos')) || [];
 
 //Funcao que renderiza os TODOS da array cadastrado
 function renderTodos(){
@@ -61,5 +67,5 @@ function deleteTodo(pos){
 function saveToStorage(){
     localStorage.setItem('list_todos',JSON.stringify(todos));
     //podemos consultar os valores cadastrados na aba inspecionar do navegador na aba Application>LocalStorage
-    
+
 }
