@@ -15,8 +15,13 @@ var minhaPromise = function(){
                 if(xhr.status === 200){ //requisicao sucesso
                     resolve(JSON.parse(xhr.responseText));
                     //se o codigo de retorno for 200(sucesso) devera chamar a funcao resolve passando o valor do texto coletado pelo xhr para o Json.parse
+                } else { //se o codigo nao for de sucesso(200) retorna uma mensagem de erro.
+                    reject('Erro na requisicao');
                 }
             }
         }
     });
 }
+
+var resultado = minhaPromise();
+console.log(resultado);
