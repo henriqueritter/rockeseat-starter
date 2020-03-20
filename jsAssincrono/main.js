@@ -1,17 +1,22 @@
-//Para começar uma requisicao AJAX, começamos definindo uma variavel como new XMLHttpRequest();
+//Criando promises
 
-var xhr = new XMLHttpRequest();
-//esta classe é que vai nos dar acesso a funcionalidade de recuperar uma informação de um servidor.
+var minhaPromise = function(){
+    return new Promise(function(resolve, reject){
+        //os parametros resolve e reject tambem sao funcoes, o seus valores serao retornado conforme o status da solicitacao, 
+        //usaremos o resultado da funcao resolve se foi um sucesso(200) e retornaremos o reject caso tenha falhado(nao sucesso)
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET','https://api.github.com/users/henriqueritter');
+        xhr.send(null);
 
-//Para buscar uma informação utilizamos o metodo open do XMLHttpRequest passando os parametros
-//xhr.open('METODO/GET/POST', 'http://link.com.br');
-//xhr.send(null);  //envia 
-xhr.open('GET', 'https://api.github.com/users/henriqueritter');
-xhr.send(null);
-//se olhar no console na aba Network podemos ver que aconteceu uma requisicao para a API do github
-
-xhr.onreadystatechange = function(){
-    if(xhr.readyState === 4){   //Se o valor da resposta for igual a 4 (que é o valor de que a requisicao retornou)
-        console.log(JSON.parse(xhr.responseText));  //exibe no console.log a informacao do servidor.
-    }
+        xhr.onreadystatechange = function(){
+            //para saber se esta requisicao obteve sucesso verificamos se o codigo da requisicao e 200 se for e sucesso
+            if(xhr.readyState === 4){
+                if(xhr.status === 200){ //requisicao sucesso
+                    resolve(JSON.parse(xhr.responseText));
+                    //se o codigo de retorno for 200(sucesso) devera chamar a funcao resolve passando o valor do texto coletado pelo xhr para o Json.parse
+                }
+            }
+        }
+    });
 }
