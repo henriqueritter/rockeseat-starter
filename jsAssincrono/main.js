@@ -23,5 +23,13 @@ var minhaPromise = function(){
     });
 }
 
-var resultado = minhaPromise();
-console.log(resultado);
+minhaPromise()
+    .then(function(response) {  // se a condicao do codigo 200 for atendida com sucesso ele ira invocar o .then (que invoca a function(response))
+        console.log(response);  //se deu tudo certo ele exibira o JSON da URL no console 
+        //aqui seria o melhor lugar para colocar algum codigo que depende do retorno do XHR pois ele só seria executado após a requisicao.
+    })
+    .catch(function(error) { //ja se o xhr.readyonstatechange chamar o reject da promise ele invocara esse .catch e ai podemos exibir alguma mensagem de erro ou dar alguma tratativa
+        console.warn(error);
+    });  
+
+    
